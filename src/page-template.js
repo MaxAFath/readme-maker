@@ -5,7 +5,7 @@ const generatepage = (projectName,projectDescription, projectGoal, credits, lice
     
     ${projectDescription}
 
-    #Usage
+    ##Usage
     ${projectGoal}
     
     ##Credits
