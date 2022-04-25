@@ -1,5 +1,7 @@
-const generatepage = (projectName,projectDescription, technology, credits, license) =>{
-    return `
+module.exports = readMeData => {
+    console.log(readMeData);/*
+    const  =  {
+        return `
     #${projectName}
 
     ##Description
@@ -8,8 +10,8 @@ const generatepage = (projectName,projectDescription, technology, credits, licen
      #Tabel of contents
     1.[Description](#description)
     2.[Installation](#installation)
-    3.[Usage](#usage)
-    4.[Licsense](#license)
+    3.[License](#ulicense)
+    4.[Intended Useage](#useage)
     5.[Contributing](#contributing)
     6.[Test Instructions](#testing)
     7.[Questions](#questions)
@@ -24,6 +26,5 @@ const generatepage = (projectName,projectDescription, technology, credits, licen
     ##License
     
     ${License}`
+    }*/
 }
-
-module.exports = generatepage;

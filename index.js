@@ -20,7 +20,9 @@ const licenseArray = ['None', 'Apache License 2.0', 'GNU General Public License 
 
 // TODO: Create a function to write README file
 function writeToFile(readmeData) {
-
+    fs.writeFile('.README.md', pageMD ,err =>{
+        if(err) throw new Error(err);
+    })
 }
 
 // TODO: Create a function to initialize app
@@ -30,95 +32,93 @@ function init() {
 Add a New Project
 =================
     `);
-    const promptUser = () => {
-        return inquirer.prompt([
-            {
-                type: 'input',
-                name: 'fileName',
-                message: asks[0],
-                validate: nameInput => {
-                    if (nameInput) {
-                        return true;
-                    }
-                    else {
-                        console.log('Please eneter the file name!');
-                        return false;
-                    }
-                }
-            },
-            {
-                type: 'input',
-                name: 'descrition',
-                message: 'Provide a description of the project (Required)',
-                validate: descriptionInput => {
-                    if (descriptionInput) {
-                        return true;
-                    } else {
-                        console.log('You need to enter a project description!');
-                        return false;
-                    }
-                }
-            }, {
-                type: 'input',
-                name: 'install',
-                message: 'How do you install this application'
-
-            }, {
-                type: 'input',
-                name: 'useage',
-                message: 'How do you want people to use this application'
-            }, {
-                type: 'list',
-                name: 'license',
-                message: 'What licenses are you using? (default is None)',
-                choices: licenseArray,
-                default: 0
-            }, {
-                type: 'input',
-                name: 'contribution',
-                message: 'How do you want people to contribute? (defult is instructing people to not',
-                default: 'Please do not contribute to this project'
-            }, {
-                type: 'input',
-                name: 'testing',
-                message: 'How do you want people to test this project?'
-            }, {
-                type: 'input',
-                name: 'github',
-                message: 'What is your Github user name',
-                validate: descriptionInput => {
-                    if (descriptionInput) {
-                        return true;
-                    } else {
-                        console.log('Enter your user name');
-                        return false;
-                    }
-                }
-            }, {
-                type: 'input',
-                name: 'email',
-                message: 'What is your email?',
-                validate: descriptionInput => {
-                    if (descriptionInput) {
-                        return true;
-                    } else {
-                        console.log('You need to enter a email to contiune');
-                        return false;
-                    }
-                },
-                when: ({confirmAbout}) => confirmAbout
-            }
-        ])
-            .then(readmeData => {
-                readmeData.projects.push(readmeData);
-                if (readmeData.confirmAddProject) {
-                    return promptUser(readmeData);
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'fileName',
+            message: asks[0],
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
                 }
                 else {
-                    return readmeData;
+                    console.log('Please eneter the file name!');
+                    return false;
                 }
-            });
-    }
+            }
+        },
+        {
+            type: 'input',
+            name: 'descrition',
+            message: 'Provide a description of the project (Required)',
+            validate: descriptionInput => {
+                if (descriptionInput) {
+                    return true;
+                } else {
+                    console.log('You need to enter a project description!');
+                    return false;
+                }
+            }
+        }, {
+            type: 'input',
+            name: 'install',
+            message: 'How do you install this application'
+
+        }, {
+            type: 'input',
+            name: 'useage',
+            message: 'How do you want people to use this application'
+        }, {
+            type: 'list',
+            name: 'license',
+            message: 'What licenses are you using? (default is None)',
+            choices: licenseArray,
+            default: 0
+        }, {
+            type: 'input',
+            name: 'contribution',
+            message: 'How do you want people to contribute? (defult is instructing people to not',
+            default: 'Please do not contribute to this project'
+        }, {
+            type: 'input',
+            name: 'testing',
+            message: 'How do you want people to test this project?'
+        }, {
+            type: 'input',
+            name: 'github',
+            message: 'What is your Github user name',
+            validate: descriptionInput => {
+                if (descriptionInput) {
+                    return true;
+                } else {
+                    console.log('Enter your user name');
+                    return false;
+                }
+            }
+        }, {
+            type: 'input',
+            name: 'email',
+            message: 'What is your email?',
+            validate: descriptionInput => {
+                if (descriptionInput) {
+                    return true;
+                } else {
+                    console.log('You need to enter a email to contiune');
+                    return false;
+                }
+            },
+            when: ({ confirmAbout }) => confirmAbout
+        }
+    ])
+        .then(readmeData => {
+            readmeData.projects.push(readmeData);
+            if (readmeData.confirmAddProject) {
+                return promptUser(readmeData);
+            }
+            else {
+                return readmeData;
+            }
+        });
 }
 
 // Function call to initialize app
