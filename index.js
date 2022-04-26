@@ -49,7 +49,7 @@ Add a New Project
         },
         {
             type: 'input',
-            name: 'descrition',
+            name: 'description',
             message: 'Provide a description of the project (Required)',
             validate: descriptionInput => {
                 if (descriptionInput) {
