@@ -106,18 +106,15 @@ Add a New Project
                     console.log('You need to enter a email to contiune');
                     return false;
                 }
-            },
-            when: ({ confirmAbout }) => confirmAbout
+            }
         }
     ])
         .then(readmeData => {
-            readmeData.projects.push(readmeData);
-            if (readmeData.confirmAddProject) {
-                return promptUser(readmeData);
-            }
-            else {
-                return readmeData;
-            }
+            const readme = generatepage(readmeData);
+
+            fs.writeFile('./README.md', readme, err => {
+                if(err)throw new Error(err);
+            })
         });
 }
 

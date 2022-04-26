@@ -1,11 +1,19 @@
 module.exports = readMeData => {
-    console.log(readMeData);/*
-    const  =  {
-        return `
-    #${projectName}
+    console.log(readMeData);
+    const { fileName,
+        description,
+        install,
+        license,
+        useage,
+        contribution,
+        testing,
+        github,
+        email } = readMeData
+    return `
+    #${fileName}
 
     ##Description
-    ${projectDescription}
+    ${description}
     
      #Tabel of contents
     1.[Description](#description)
@@ -15,16 +23,26 @@ module.exports = readMeData => {
     5.[Contributing](#contributing)
     6.[Test Instructions](#testing)
     7.[Questions](#questions)
+    
 
-    ##Technology
-    ${technology}
-    
-    ##Credits
-    
-    ${credits}
+    ##installation
+    ${install}
     
     ##License
     
-    ${License}`
-    }*/
+    ${license}
+    
+    ##Intended Use
+    ${useage}
+    
+    ##Contributing
+    ${contribution}
+    
+    ##Testing
+    ${testing}
+    
+    ##Questions
+    Any questions can be sent to ${email} or contact me on Github ${github},
+    messages sent via carrier pigion have highest priority`
+        ;
 }
